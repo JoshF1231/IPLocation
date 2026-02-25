@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iplocation-deployment
+  labels:
+    app: iplocation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iplocation
+  template:
+    metadata:
+      labels:
+        app: iplocation-pod
+    spec:
+      containers:
+      - name: iplocation
+        image: joshfiquette/iplocation:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: IPGEO_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: iplocation-secret
+              key: IPGEO_API_KEY
