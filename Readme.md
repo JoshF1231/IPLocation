@@ -13,7 +13,7 @@ docker-compose up --build
 ```
 
 ## Usage
-Browse to http://localhost:8000/?ip=[IP]
+Browse to http://localhost:8000/?ip=[IP], for example http://localhost:8000/?ip=8.8.8.8
 
 ## Configuration
 Update API key from https://ipgeolocation.io/ in .env file, example under .env.example
