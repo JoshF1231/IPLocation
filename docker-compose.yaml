@@ -1,0 +1,23 @@
+services:
+  timezone-service:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - HTTP_PROXY=http://squid:3128
+      - HTTPS_PROXY=http://squid:3128
+    restart: unless-stopped
+
+  squid:
+    image: sameersbn/squid:3.5.27-2
+    ports:
+      - "3128:3128"
+    volumes:
+      - ./squid/squid.conf:/etc/squid/squid.conf:ro
+      - squid-cache:/var/spool/squid
+    restart: unless-stopped
+
+volumes:
+  squid-cache:
