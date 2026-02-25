@@ -28,7 +28,6 @@ def ip_info(ip: str = Query(..., description="IP Address")):
     info = get_ip_info(ip)
     if info is None:
         return("IP information not found")
-    result = get_ip_info("91.128.103.196")
     country_name = info["location"]["country_name"]
     city_name = info["location"]["city"]
     return f"{country_name}/{city_name}"
